@@ -125,7 +125,8 @@ def fib(n):
         return n
     else:
         return(fib(n-1) + fib(n-2))
-        nterms = int(input("enter a number"))
+	
+nterms = int(input("enter a number"))
 
 if nterms <= 0:
     print("Plese enter a positive integer")
