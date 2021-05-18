@@ -26,7 +26,7 @@ other applications).
 
 * **To maximize performance, minimize execution time**
 
-   `Performance(x) / Performance(y) = ExecutionTime(x) / ExecutionTime(y) = n`
+![Algorithmic efficiency](https://i.imgur.com/j8VR7nU.gif)
    
 ### Example
 
