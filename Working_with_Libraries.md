@@ -150,8 +150,8 @@ additional libraries.
 
 ![Library](https://i.imgur.com/X1CWe4V.png)
 
-Define a function `moduletest2()` in [`module2.py`](#Module2.py) file and call this
-function in [`mylibcall.py`](#Mylibcall.py) file as a part of library1 library. Now run `mylibcall.py` file
+Define a function `moduletest2()` in [`module2.py`](#module2py) file and call this
+function in [`mylibcall.py`](#mylibcallpy) file as a part of library1 library. Now run `mylibcall.py` file
 It will call `moduletest2()` method and display-`from module2` message.
 Please make sure that a blank file with `__init__.py` is created.
 
