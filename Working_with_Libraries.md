@@ -133,7 +133,39 @@ from Geometry.Circle import perimeter_circ
 
 ## Using Library
 
-_working on it :)_
+It is a collection of various packages. Conceptually, _**There is no difference between
+package and python library**_.In Python, a library is used loosely to describe a
+collection of the core modules.
+
+`standard library` of Python language comes bundled with the core Python
+distribution are collection of exact syntax, token and semantics of the Python
+language. The python standard library lists down approx more than 200 such core
+modules that form the core of Python.
+
+`Additional libraries` refer to those optional components that are commonly
+included in Python distributions. The Python installers automatically adds the standard library and some additional
+libraries. The additional library is generally provided as a collection of packages. To use such
+additional library we have to use packaging tools like [`easyinstall`](https://wiki.python.org/moin/EasyInstall "Easy Install") or [`pip`](https://github.com/pypa/pip#pip---the-python-package-installer "Pip") to install such
+additional libraries.
+
+![Library](https://i.imgur.com/X1CWe4V.png)
+
+Define a function `moduletest2()` in [`module2.py`](#Module2.py) file and call this
+function in [`mylibcall.py`](#Mylibcall.py) file as a part of library1 library. Now run `mylibcall.py` file
+It will call `moduletest2()` method and display-`from module2` message.
+Please make sure that a blank file with `__init__.py` is created.
+
+### Module2.py
+```py
+def moduletest2():
+    print("From Module 2")
+```
+
+### Mylibcall.py
+```py
+from library1.package1 import module2
+print(module2.moduletest2())
+```
 
 ## Using Framework
 
