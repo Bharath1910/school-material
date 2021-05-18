@@ -115,7 +115,8 @@ Similar to importing a specific function, Importing all functions does not requi
 - Let’s create a directory `geometry`. 
 - Now this package contains multiple packages / modules to handle user related requests.
 
-![Packages](https://i.imgur.com/MoKCtEM.png)
+<img src="https://i.imgur.com/MoKCtEM.png" width=600/>
+
 
 #### Where,
 1. Geometry is the top Package
@@ -148,7 +149,8 @@ libraries. The additional library is generally provided as a collection of packa
 additional library we have to use packaging tools like [`easyinstall`](https://wiki.python.org/moin/EasyInstall "Easy Install") or [`pip`](https://github.com/pypa/pip#pip---the-python-package-installer "Pip") to install such
 additional libraries.
 
-![Library](https://i.imgur.com/X1CWe4V.png)
+<img src="https://i.imgur.com/02ihg1i.gif" width=600 />
+
 
 Define a function `moduletest2()` in [`module2.py`](#module2py) file and call this
 function in [`mylibcall.py`](#mylibcallpy) file as a part of library1 library. Now run `mylibcall.py` file
