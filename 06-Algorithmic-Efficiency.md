@@ -26,7 +26,10 @@ other applications).
 
 * **To maximize performance, minimize execution time**
 
-![Algorithmic efficiency](https://i.imgur.com/j8VR7nU.gif)
+<img src="https://i.imgur.com/j8VR7nU.gif" width="600"/>
+
+
+<!-- ![Algorithmic efficiency](https://i.imgur.com/j8VR7nU.gif) -->
    
 ### Example
 
