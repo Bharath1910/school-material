@@ -1,5 +1,7 @@
 <h1 align='center'> Using Python Libraries <h1>
 
+<h1><img src="https://i.imgur.com/KZDBWe5.gif"></h1>
+
 ## Index
 * [**Modularization of python program**](#Modularization-of-python-program)
 
@@ -175,3 +177,7 @@ Framework is like a collection of various libraries which architects
 some more component.
 For e.g. [Django](https://www.djangoproject.com/ "Django") which has various in-built libraries like Auth, user,
 database connector etc.
+
+---
+
+<h1><img src="https://i.imgur.com/9Li44bC.gif"></h1>
