@@ -20,7 +20,7 @@
 
 
 ## Modularization of python program
-![Imgur](https://i.imgur.com/R91uEwv.png) 
+![Imgur](https://i.imgur.com/OuM4SWI.gif) 
 
 - Framework = Multiple Libraries 
 
@@ -115,7 +115,7 @@ Similar to importing a specific function, Importing all functions does not requi
 - Let’s create a directory `geometry`. 
 - Now this package contains multiple packages / modules to handle user related requests.
 
-<img src="https://i.imgur.com/MoKCtEM.png" width=600/>
+<img src="https://i.imgur.com/gnN6kvF.gif" width=600/>
 
 
 #### Where,
