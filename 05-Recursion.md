@@ -1,5 +1,7 @@
 # <h1 align="center"> Recursion </h1>
 
+<h1><img src="https://i.imgur.com/hcK3TRt.gif"></h1>
+
 # Index
 * [Recursion](#recursion)
 * [2 Laws of Recursion](#2-laws-of-recursion)
@@ -137,6 +139,9 @@ else:
         print(fib(i))
 ```
 
+---
+
+![Imgur](https://imgur.com/aVND2wf.png)
 
 
 
