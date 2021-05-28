@@ -31,10 +31,21 @@ function a recursive function.**
 
 ![Recursion](https://i.imgur.com/WmK3Hi2.gif)
 
+---
+
+![hey](https://external-preview.redd.it/b1iFlzzwl7RQMt_dyCoy3B-4pWtf14s1Uu7tsLjLBA8.png?auto=webp&s=ad40f7556dd1e8144859233fbcf73d408901db4e)
+
 ## 2 Laws of Recursion
 
 * **Must have a base case** - There must be at least one base criteria/condition, when such condition is met the function stops calling itself.
+
+![proper recursion](https://i.pinimg.com/originals/fc/09/2e/fc092ecfa54cecbef34cb4745b9f6b42.png)
+
 * **Must move toward the base case** - The recursive calls should moves in such a way that each time it comes closer to the base criteria.
+
+**When there is no base case (aka Exit statement) the program will run forever**
+
+![Recursion](https://i.redd.it/0wap3cp4khm01.jpg)
 
 ---
 ## Simple algorithms with recursion 
