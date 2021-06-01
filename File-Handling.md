@@ -357,7 +357,595 @@ f.close()
     visit
     python.mykvs.in
     
+### Getting & Resetting the Files Position
+The `tell()` method of python tells us the current position within the file, where as The seek(offset[from]) method changes the current file position. If from is `0`, the beginning of the file to seek. If it is set to `1`, the current position is used . If it is set to `2` then the end of the file would be taken as seek
+position. The **offset** argument indicates the number of bytes to be moved.
+
+```py
+f = open("a.txt", 'w')
+
+line = 'Welcome to python.mykvs.in\nRegularly visit python.mykvs.in'
+f.write(line)
+
+f.close()
+
+f = open("a.txt", 'rb+')
+
+print(f.tell())
+print(f.read(7))# read seven characters
+
+print(f.tell())
+print(f.read())
+
+print(f.tell())
+f.seek(9,0) # moves to 9 position from begining
+
+print(f.read(5))
+f.seek(4, 1) # moves to 4 position from current location
+
+print(f.read(5))
+
+f.seek(-5, 2) # Go to the 5th byte before the end
+print(f.read(5))
+
+f.close()
+```
+
+### Output
+    0
+    b'Welcome'
+    7
+    b' to
+    python.mykvs.in\r\nRe
+    gularly visit
+    python.mykvs.in'
+    59
+    b'o pyt'
+    b'mykvs'
+    b'vs.in'
 
 
-<h1>Me lazy zZ rest of the chapters coming soon</h1>
+## Modify a Text File
+There is no way to insert into the middle of a file without re-writing
+it. We can append to a file or overwrite part of it using seek but if
+we want to add text at the beginning or the middle, we'll have to
+rewrite it.
+
+It is an operating system task, not a Python task. It is the same in all
+languages.
+
+What we usually do for modification is read from the file, make the
+modifications and write it out to a new file called temp.txt or
+something like that. This is better than reading the whole file into
+memory because the file may be too large for that. Once the
+temporary file is completed, rename it the same as the original file.
+This is a good, safe way to do it because if the file write crashes or
+aborts for any reason in between, we still have our untouched
+original file.
+
+### Replace string in the same File
+```py
+fin = open("dummy.txt", "rt")
+
+data = fin.read()
+data = data.replace('my', 'your')
+
+fin.close()
+
+fin = open("dummy.txt", "wt")
+
+fin.write(data)
+
+fin.close()
+```
+
+#### What have we done here?
+Open file `dummy.txt` in read text mode `rt`.
+``fin.read()`` reads whole text in `dummy.txt` to the variable data.
+`data.replace()` replaces all the occurrences of my with your in the whole text.
+`fin.close()` closes the input file `dummy.txt`.
+In the last three lines, we are opening dummy.txt in write text wt mode and writing the
+data to `dummy.txt` in `replace` mode. Finally closing the file `dummy.txt`.
+
+> Note :- above program is suitable for file with small size.
+
+
+### Replace string using temporary file 
+```py
+import os
+
+f=open("d:\\a.txt","r")
+g=open("d:\\c.txt","w")
+
+for text in f.readlines():
+    text=text.replace('my','your')
+    g.write(text)
     
+f.close()
+g.close()
+
+os.remove("d:\\a.txt")
+os.rename("d:\\c.txt","d:\\a.txt")
+
+print("file contents modified")
+```
+
+> **Note -** above program is suitable for large file.Here line by line is being read from `a.txt` file
+> in text string and text string been replaced `my` with `your` through `replace()`
+> method. Each text is written in `c.txt` file then close both files, remove old file `a.txt` through
+> remove method of `os module` and rename `c.txt(temporary file)` file with `a.txt` file.After
+> execution of above program all occurances of `my` will be replaced with `your`. For testing
+> of above program create `a.txt` file in D: drive with some substring as `my`.Run above
+> program and check changes
+
+## Append content to a Text file
+
+```py
+f = open("a.txt", 'w')
+
+line = 'Welcome to python.mykvs.in\nRegularly visit python.mykvs.in'
+f.write(line)
+
+f.close()
+
+f = open("a.txt", 'a+')
+
+f.write("\nthanks")
+f.close()
+
+f = open("a.txt", 'r')
+
+text = f.read()
+print(text)
+
+f.close() 
+```
+
+### Output 
+    Welcome to python.mykvs.in
+    Regularly visit python.mykvs.in
+    thanks
+
+
+### Standard Input, Output, And error Streams In Python
+Most programs make output to "standard out",input from "standard in", and error messages go to standard error. standard output is to
+monitor and standard input is from keyboard.
+
+```py
+a = sys.stdin.readline()
+sys.stdout.write(a)
+
+a = sys.stdin.read(5)  # entered 10 characters.a contains 5 characters.
+
+#The remaining characters are waiting to be read.
+
+sys.stdout.write(a)
+
+b = sys.stdin.read(5)
+
+sys.stdout.write(b)
+sys.stderr.write("\ncustom error message")
+```
+
+### Write and read a Binary file
+
+```py
+binary_file=open("D:\\binary_file.dat",mode="wb+")
+
+text="Hello 123"
+encoded=text.encode("utf-8")
+
+binary_file.write(encoded)
+binary_file.seek(0)
+binary_data=binary_file.read()
+
+print("binary:",binary_data)
+text=binary_data.decode("utf-8")
+
+print("Decoded data:",text)
+```
+> **Note :-** Opening and closing of binary file is same as text file opening and closing. While
+> opening any binary file we have to specify `b` in file opening mode.
+> In above program `binary_file.dat` is opened in `wb+` mode so that after writing, reading
+> operation can be done on binary file. String variable text hold text to be `encoded` before
+> writing with the help of encode method(). `utf-8` is encoding scheme.after writing text ,we
+> again set reading pointer at beginning with the help of `seek()` method.then read the text
+> from file and `decode` it with the help of `decode()` method then display the text.
+
+### Binary file Operation using pickle module
+
+The problem with the approach of previous slide comes from the
+fact that it is not very easy to use when we want to write several
+objects into the binary file. For instance, consider what we would
+have to do if we wished to write string, integer and perhaps even
+the contents of a list or dictionary into the file. How would we read
+the contents of this file later? This is not a trivial task, especially if
+some of the objects can have variable lengths.
+Fortunately, Python has a module which does this work for us and
+is extremely easy to use. This module is called pickle; it provides us
+with the ability to serialize and deserialize objects, i.e., to convert
+objects into bitstreams which can be stored into files and later be
+used to reconstruct the original objects.
+
+#### pickle.dump()
+function is used to store the object data to the file. It
+takes 3 arguments. First argument is the object that we want to
+store. The second argument is the file object we get by opening the
+desired file in `write-binary (wb)` mode. And the third argument is
+the key-value argument. This argument defines the protocol. There
+are two type of protocol – 
+
+`pickle.HIGHEST_PROTOCOL` and `pickle.DEFAULT_PROTOCOL`.
+
+#### Pickle.load() 
+function is used to retrieve pickled data.The steps are
+quite simple. We have to use `pickle.load()` function to do that. The
+primary argument of pickle load function is the file object that you
+get by opening the file in `read-binary (rb)` mode.
+
+### Binary file R/W Operation using pickle module
+
+In this program we open `a.bin` file in
+binary mode using `wb` specification
+and create and store value in 4
+different data objects i.e.
+int, string, list, dict. Write these into
+binary file using `pickle.dump()`
+method then close this file and open
+the same for reading operation. We
+read the content using `load method()`
+and display the value read from file.
+To use dump and load we have to
+`import pickle` module first of all.
+
+```py
+import pickle
+
+output_file = open("d:\\a.bin", "wb")
+
+# Different values
+myint = 42
+mystring = "Python.mykvs.in!"
+mylist = ["python", "sql", "mysql"]
+mydict = { "name": "ABC", "job": "XYZ" }
+
+
+pickle.dump(myint, output_file)
+pickle.dump(mystring, output_file)
+pickle.dump(mylist, output_file)
+pickle.dump(mydict, output_file)
+
+output_file.close()
+
+input_file = open("d:\\a.bin", "rb")
+
+myint = pickle.load(input_file)
+mystring = pickle.load(input_file)
+mylist = pickle.load(input_file)
+mydict = pickle.load(input_file)
+
+print("myint = %s" % myint)
+print("mystring = %s" % mystring)
+print("mylist = %s" % mylist)
+print("mydict = %s" % mydict)
+
+input_file.close()
+```
+
+### Iteration over Binary file
+
+```py
+import pickle
+
+output_file = open("d:\\a.bin", "wb")
+
+myint = 42
+mystring = "Python.mykvs.in!"
+mylist = ["python", "sql", "mysql"]
+mydict = { "name": "ABC", "job": "XYZ" }
+
+pickle.dump(myint, output_file)
+pickle.dump(mystring, output_file)
+pickle.dump(mylist, output_file)
+pickle.dump(mydict, output_file)
+
+output_file.close()
+
+with open("d:\\a.bin", "rb") as f:
+    while True:
+        try:
+            r=pickle.load(f)
+            print(r)
+            print("Next data")
+            
+        except EOFError:
+            break
+f.close()
+```
+
+### Insert/append record in a Binary file
+
+```py
+rollno = int(input('Enter roll number:'))
+name = input('Enter Name:')
+marks = int(input('Enter Marks'))
+
+#Creating the dictionary
+rec = {'Rollno':rollno,'Name':name,'Marks':marks}  # Here we are creating dictionary rec to dump it in student.dat file
+
+#Writing the Dictionary
+f = open('d:/student.dat','ab')
+pickle.dump(rec,f)
+
+f.close()
+```
+
+### Read records from a Binary file
+```py
+f = open('d:/student.dat','rb')
+
+while True:
+    try:
+        rec = pickle.load(f)
+        print('Roll Num:',rec['Rollno'])
+        print('Name:',rec['Name'])
+        print('Marks:',rec['Marks'])
+        
+    except EOFError:
+        break
+        
+f.close()
+```
+
+> Here we will iterate using infinite while loop and exit on end of file is reached.at each iteration a dictionary data is read into rec and then values are being displayed
+
+### Search record in a Binary file
+
+```py
+f = open('d:/student.dat','rb')
+
+flag = False
+
+r = int(input(“Enter rollno to be searched”))
+
+while True:
+    try:
+        rec = pickle.load(f)
+        if rec['Rollno'] == r:
+            print('Roll Num:',rec['Rollno'])
+            print('Name:',rec['Name'])
+            print('Marks:',rec['Marks'])
+            flag = True
+            
+    except EOFError:
+        break
+        
+if flag == False:
+    print('No Records found')
+    
+f.close()
+```
+
+> Here value of r to be searched will be compared with rollno value of file in each iteration/next record and if matches then relevant data will be shown and flag will be set to True otherwise it will remain False and `No Record Found message will be displayed`
+
+### Update record of a Binary file
+
+```py
+f = open('d:/student.dat','rb')
+
+reclst = []
+
+r = int(input(“enter roll no to be updated”))
+m = int(input(“enter correct marks”))
+
+while True:
+    try:
+        rec = pickle.load(f)
+        reclst.append(rec)
+        
+    except EOFError:
+        break
+        
+f.close()
+
+for i in range (len(reclst)):
+    if reclst[i]['Rollno']==r:
+        reclst[i]['Marks'] = m
+        
+f = open('d:/student.dat','wb')
+
+for x in reclst:
+    pickle.dump(x,f)
+    
+f.close()
+```
+
+> Here we are reading all records from binary file and storing those in reclst list then update relevant roll no/marks data in reclst list and create/replace student.dat file with all data of reclst. If large data are in student.dat file then It’s alternative way can be using temporary file creation with
+corrected data then using os module for remove and rename method (just similar to modification of text file)
+
+### Delete record of a Binary file
+
+```py
+f = open('d:/student.dat','rb')
+
+reclst = []
+
+r = int(input(“enter roll no to be deleted”))
+
+while True:
+    try:
+        rec = pickle.load(f)
+        reclst.append(rec)
+    except EOFError:
+        break
+        
+f.close()
+
+f = open('d:/student.dat','wb')
+
+for x in reclst:
+    if x['Rollno']==r:
+        continue
+    pickle.dump(x,f)
+    
+f.close() 
+```
+
+> Here we are reading all records from
+> binary file and storing those in reclst
+> list then write all records except
+> matching roll no(with the help of
+> continue statement) in student.dat
+> file.Due to wb mode old data will be
+> removed.
+> If large data are in student.dat file
+> then It’s alternative way can be
+> using temporary file creation with
+> corrected data then using os module
+> for remove and rename method
+> (just similar to deletion from text
+> file)
+
+#### Python Program For Interactive Binary Data Handling
+
+```py
+import os
+import pickle
+
+
+#Accepting data for Dictionary
+def insertRec():
+    rollno = int(input('Enter roll number:'))
+    name = input('Enter Name:')
+    marks = int(input('Enter Marks'))
+
+    #Creating the dictionary
+    rec = {'Rollno':rollno,'Name':name,'Marks':marks}
+
+    #Writing the Dictionary
+    f = open('d:/student.dat','ab')
+    pickle.dump(rec,f)
+    f.close()
+
+#Reading the records
+def readRec():
+    f = open('d:/student.dat','rb')
+    while True:
+        try:
+            rec = pickle.load(f)
+            print('Roll Num:',rec['Rollno'])
+            print('Name:',rec['Name'])
+            print('Marks:',rec['Marks'])
+        except EOFError:
+            break
+    f.close()
+
+#Searching a record based on Rollno
+def searchRollNo(r):
+    f = open('d:/student.dat','rb')
+    flag = False
+    while True:
+        try:
+            rec = pickle.load(f)
+            if rec['Rollno'] == r:
+                print('Roll Num:',rec['Rollno'])
+                print('Name:',rec['Name'])
+                print('Marks:',rec['Marks'])
+                flag = True
+        except EOFError:
+            break
+    if flag == False:
+        print('No Records found')
+    f.close()
+    
+    
+#Marks Modification for a RollNo
+def updateMarks(r,m):
+    f = open('d:/student.dat','rb')
+    reclst = []
+    while True:
+        try:
+            rec = pickle.load(f)
+            reclst.append(rec)
+        except EOFError:
+            break
+    f.close()
+    for i in range (len(reclst)):
+        if reclst[i]['Rollno']==r:
+            reclst[i]['Marks'] = m
+    f = open('d:/student.dat','wb')
+    for x in reclst:
+        pickle.dump(x,f)
+    f.close()            
+
+#Deleting a record based on Rollno
+def deleteRec(r):
+    f = open('d:/student.dat','rb')
+    reclst = []
+    while True:
+        try:
+            rec = pickle.load(f)
+            reclst.append(rec)
+        except EOFError:
+            break
+    f.close()
+    f = open('d:/student.dat','wb')
+    for x in reclst:
+        if x['Rollno']==r:
+            continue
+        pickle.dump(x,f)
+    f.close()  
+    
+while 1==1:
+    print('Type 1 to insert rec.')
+    print('Type 2 to display rec.')
+    print('Type 3 to Search RollNo.')
+    print('Type 4 to update marks.')
+    print('Type 5 to delete a Record.')
+    print('Enter your choice 0 to exit')
+    
+    choice = int(input('Enter you choice:'))
+    
+    if choice==0:
+        break
+    elif choice == 1:
+        insertRec()
+        
+    elif choice == 2:
+        readRec()
+        
+    elif choice == 3:
+        r = int(input('Enter a rollno to search:'))
+        searchRollNo(r)
+        
+    elif choice == 4:
+        r = int(input('Enter a rollno:'))
+        m = int(input('Enter new Marks:'))
+        updateMarks(r,m)
+        
+    elif choice == 5:
+        r = int(input('Enter a rollno:'))
+        deleteRec(r)
+    
+    else:
+        print("Select a correct option")
+        
+```
+
+## CSV Files
+CSV (Comma Separated Values) is a file format for data storage which looks like a
+text file. The information is organized with one record on each line and each field
+is separated by comma.
+
+**CSV File Characteristics**
+* One line for each record
+* Comma separated fields
+* Space-characters adjacent to commas are ignored
+* Fields with in-built commas are separated by double quote characters.
+
+**When use CSV?**
+* When data has a strict tabular structure
+* To transfer large database between programs
+* To import and export data to office applications, Qedoc modules
+* To store, manage and modify shopping cart catalogue
+* 
