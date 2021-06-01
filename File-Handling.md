@@ -1,7 +1,37 @@
 <h1 align="center"> File Handling </h1>
 
 # Index
-
+* [Need for a Data File]()
+* [File Handling]()
+    * [Types of File]()
+    * [Opening and Closing Files]()
+        * [open Function]()
+        * [File opening modes]()
+        * [Basic Text file operations]()
+    * [Methods of os module]()
+    * [Absolute Path vs Relative Path]()
+    * [File object attributes]()
+        * [open a text file]()
+        * [Close a text file]()
+        * [Read/write text file]()
+        * [Getting & Resetting the Files Position]()
+        * [Modify a Text file]()
+        * [Append content to a Text file]() 
+    * [Standard input, output, and error streams in python]()
+    * [Write and read a Binary file]()
+    * [Pickle Module]()
+        * [Binary file Operation]()
+        * [Binary file R/W Operation]()
+        * [Iteration over Binary file]()
+        * [Insert/append record in a Binary file]()
+        * [Read records from a Binary file]()
+        * [Search record in a Binary file]()
+        * [Update record of a Binary file]()
+        * [Delete record of a Binary file]()
+    * [Binary Data Handler Program]()
+    * [CSV File]()
+        * [Write / Read CSV File]() 
+    
 
 ## Need for a Data File
 * To Store data in organized manner
@@ -937,15 +967,74 @@ CSV (Comma Separated Values) is a file format for data storage which looks like 
 text file. The information is organized with one record on each line and each field
 is separated by comma.
 
-**CSV File Characteristics**
+### CSV File Characteristics
 * One line for each record
 * Comma separated fields
 * Space-characters adjacent to commas are ignored
 * Fields with in-built commas are separated by double quote characters.
 
-**When use CSV?**
+### When use CSV?
 * When data has a strict tabular structure
 * To transfer large database between programs
 * To import and export data to office applications, Qedoc modules
 * To store, manage and modify shopping cart catalogue
-* 
+
+### CSV Advantages
+* CSV is faster to handle
+* CSV is smaller in size
+* CSV is easy to generate
+* CSV is human readable and easy to edit manually
+* CSV is simple to implement and parse
+* CSV is processed by almost all existing applications
+
+### CSV Disadvantages
+* No standard way to represent binary data
+* There is no distinction between text and numeric values
+* Poor support of special characters and control characters
+* CSV allows to move most basic data only. Complex configurations cannot be imported and exported this way
+* Problems with importing CSV into SQL (no distinction between NULL and quotes)
+
+### Write / Read CSV FILE
+
+Writing and reading operation from
+text file is very easy. First of all we have
+to import csv module for file
+operation/method call.
+For writing, we open file in `w` writing
+mode using `open()` method which
+create newFile like object.
+Through `csv.writer()` method, we
+create writer object to call `writerow()`
+method to write objects.
+Similarly for reading, we open the file
+in `r` mode and create newFile like
+object,further we create newfilereader
+object using `csv.reader()` method to
+read each row of the file.
+Three file opening modes are there
+`w`,`r`,`a`. `a` for `append`
+After file operation close, opened file
+using `close()` method.
+
+```py
+import csv
+
+#csv file writing code
+with open('d:\\a.csv','w') as newFile:
+    newFileWriter = csv.writer(newFile)
+    
+    newFileWriter.writerow(['user_id','beneficiary'])
+    newFileWriter.writerow([1,'xyz'])
+    newFileWriter.writerow([2,'pqr'])
+    
+    newFile.close()
+    
+#csv file reading code
+with open('d:\\a.csv','r') as newFile:
+    newFileReader = csv.reader(newFile)
+    
+    for row in newFileReader:
+        print (row)
+        
+    newFile.close()
+```
