@@ -173,7 +173,8 @@ it's the same thing with computers too.
 * name: Returns the name of the file which file object holds.
 * newlines: Returns `\r`, `\n`, `\r\n`, None or a tuple containing all the newline types seen.
 
-### Examples
+### Open a Text File
+
 ```py
 f = open("a.txt", 'a+') 
 print(f.closed)
@@ -193,10 +194,62 @@ print(f.name)
 
 `` a.txt ``
 
-### Open a Text File
+### close text file
+`close()` Used to close an open file. After using this method,an opened
+file will be closed and a closed file cannot be read or written any more.
+
+```py
+f = open("a.txt", 'a+')
+print(f.closed)
+print("Name of the file is", f.name)
+f.close()
+print(f.closed)
+
+```
+
+### Output 
+`False`
+
+`Name of the file is a.txt`
+
+`True`
 
 
+### Read and Write Text Files
 
+#### The write() Method
+It writes the contents to the file in the form of string. It
+does not return value. Due to buffering, the string may not
+actually show up in the file until the flush() or close()
+method is called.
 
+#### The read() Method
+It reads the entire file and returns it contents in the form of
+a string. Reads at most size bytes or less if end of file
+occurs.if size not mentioned then read the entire file
+contents.
 
+#### Program
+```py
+f = open("a.txt", 'w')
 
+line1 = 'Welcome to python.mykvs.in'
+f.write(line1)
+
+line2="\nRegularly visit python.mykvs.in"
+f.write(line2)
+
+f.close()
+
+f = open("a.txt", 'r')
+text = f.read()
+
+print(text)
+f.close() 
+```
+
+#### Output
+Welcome to python.mykvs.in
+Regularly visit python.mykvs.in
+
+### Read Text Files
