@@ -184,15 +184,15 @@ print(f.newlines)
 print(f.name)
 ```
 ### Output
-`` False ``
+    False
 
-`` cp1252 ``
+    cp1252
 
-`` a+ ``
+    a+ 
 
-`` None ``
+    None 
 
-`` a.txt ``
+    a.txt 
 
 ### close text file
 `close()` Used to close an open file. After using this method,an opened
@@ -208,11 +208,11 @@ print(f.closed)
 ```
 
 ### Output 
-`False`
+    False
 
-`Name of the file is a.txt`
+    Name of the file is a.txt
 
-`True`
+    True
 
 
 ### Read and Write Text Files
@@ -249,7 +249,115 @@ f.close()
 ```
 
 #### Output
-Welcome to python.mykvs.in
-Regularly visit python.mykvs.in
+    Welcome to python.mykvs.in
+    Regularly visit python.mykvs.in
 
 ### Read Text Files
+
+#### Readline([Size]) 
+Read no of characters from file if size is mentioned till eof (End Of File).read line till new line character.returns empty string on EOF.
+
+```py
+f = open("a.txt", 'w')
+
+line1 = 'Welcome to python.mykvs.in'
+f.write(line1)
+
+line2="\nRegularly visit python.mykvs.in"
+f.write(line2)
+
+f.close()
+
+f = open("a.txt", 'r')
+
+text = f.readline()
+print(text)
+
+text = f.readline()
+print(text)
+```
+
+#### Output 
+    Welcome to python.mykvs.in
+    Regularly visit python.mykvs.in
+    
+#### readlines([size])
+Read no of lines from file if size is mentioned or all
+contents if size is not mentioned.
+
+```py
+f = open("a.txt", 'w')
+
+line1 = 'Welcome to python.mykvs.in'
+f.write(line1)
+
+line2="\nRegularly visit python.mykvs.in"
+f.write(line2)
+
+f.close()
+
+f = open("a.txt", 'r')
+
+text = f.readlines(1)
+print(text)
+
+f.close()
+```
+#### Output
+    ['Welcome to python.mykvs.in\n']
+
+
+### Iterating over lines in a file
+```py
+f = open("a.txt", 'w')
+
+line1 = 'Welcome to python.mykvs.in'
+f.write(line1)
+
+line2="\nRegularly visit python.mykvs.in"
+f.write(line2)
+
+f.close()
+
+f = open("a.txt", 'r')
+
+for text in f.readlines():
+    print(text)
+    
+f.close() 
+```
+
+#### Word Processing
+
+```py
+f = open("a.txt", 'w')
+
+line1 = 'Welcome to python.mykvs.in'
+f.write(line1)
+
+line2="\nRegularly visit python.mykvs.in"
+f.write(line2)
+
+f.close()
+
+f = open("a.txt", 'r')
+
+for text in f.readlines():
+    for word in text.split( ):
+        print(word)
+        
+f.close()
+```
+
+#### Output
+    Welcome
+    to
+    python.mykvs.in
+    Regularly
+    visit
+    python.mykvs.in
+    
+
+
+<h1>Me lazy zZ rest of the chapters coming soon</h1>
+    
