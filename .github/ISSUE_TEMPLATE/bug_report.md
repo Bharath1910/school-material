@@ -9,5 +9,5 @@ assignees: Bharath1910
 
 **Wrong Information**
 
-the study material has wrong information on it?, or the example codes have any syntax errors?
-can you fix it?? file a bug report.. :)
+* Errors on Example code - 
+* Information is wrong on the study material -
