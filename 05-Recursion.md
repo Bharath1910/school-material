@@ -43,6 +43,8 @@ function a recursive function.**
 
 * **Must move toward the base case** - The recursive calls should moves in such a way that each time it comes closer to the base criteria.
 
+![No base case :(](https://i.imgur.com/urPRm5O.png)
+
 **When there is no base case (aka Exit statement) the program will run forever**
 
 ![Recursion](https://i.redd.it/0wap3cp4khm01.jpg)
