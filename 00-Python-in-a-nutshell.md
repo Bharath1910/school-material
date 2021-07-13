@@ -91,13 +91,33 @@ var = '''
  ```
  
 #### Numeric Literals
-numeric literals?
+numeric literals? they are just numbers..
+
+---
+### Integers
+
 ``int`` they are just integers. 0, positive and negative numbers 
 
 **Types**
 * Decimal - Base 10
 * Octal - Base 8
 * Hexadecimal - Base 16
+---
+### Float
+
+``float`` they are numbers with decimal points
+``3.14159``,``10.32``, etc
+
+---
+### Boolean Literals
+its just ``True`` and ``False``
+nothing much tosay to be honest 
+
+---
+### None
+``None``. its just none. if you asked something to python and python cannot find it, it returns ``None``
+
+---
 
 
  
