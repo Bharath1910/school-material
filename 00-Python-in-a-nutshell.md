@@ -196,3 +196,7 @@ if var == True:
 else:
     print("var is false")
 ```
+
+## If-elif statements
+![](https://imgr.search.brave.com/JoNUi6izM--49kPZ57xanxHVKrOFOrAdcZOwEWUSvBA/fit/1200/1080/no/1/aHR0cHM6Ly9tZWRp/YS5nZWVrc2Zvcmdl/ZWtzLm9yZy93cC1j/b250ZW50L3VwbG9h/ZHMvaWYtZWxzZWlm/LWxhZGRlci5qcGc)
+
