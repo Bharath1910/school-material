@@ -1,7 +1,7 @@
 <h1 align="center"> File Handling </h1>
 
 # Index
-* [Need for a Data File]()
+* [Need for a Data File](#need-for-a-data-file)
 * [File Handling]()
     * [Types of File]()
     * [Opening and Closing Files]()
